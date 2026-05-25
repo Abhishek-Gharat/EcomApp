@@ -109,7 +109,7 @@ const Orders = () => {
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-right">
-                        <p className="font-bold text-lg">₹{order.total?.toFixed(2)}</p>
+                        <p className="font-bold text-lg">Rs. {order.total?.toFixed(2)}</p>
                         <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}>
                           {order.status?.charAt(0).toUpperCase() + order.status?.slice(1)}
                         </span>
@@ -139,10 +139,10 @@ const Orders = () => {
                               <div className="flex-1">
                                 <p className="font-medium">{item.name}</p>
                                 <p className="text-sm text-gray-600">
-                                  Qty: {item.quantity} × ₹{item.price}
+                                  Qty: {item.quantity} x Rs. {item.price}
                                 </p>
                               </div>
-                              <p className="font-semibold">₹{(item.price * item.quantity).toFixed(2)}</p>
+                              <p className="font-semibold">Rs. {(item.price * item.quantity).toFixed(2)}</p>
                             </div>
                           ))}
                         </div>

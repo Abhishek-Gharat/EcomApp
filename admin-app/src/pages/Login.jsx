@@ -35,7 +35,7 @@ const Login = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Admin Login</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">PulseBay Admin</h1>
           <p className="text-gray-600">Sign in to manage your store</p>
         </div>
 
@@ -57,7 +57,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                placeholder="admin@example.com"
+                placeholder="admin@pulsebay.test"
               />
             </div>
           </div>

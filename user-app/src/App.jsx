@@ -23,7 +23,7 @@ const AppContent = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar onSearch={setSearchQuery} />
+      <Navbar onSearch={setSearchQuery} onCartOpen={() => setCartOpen(true)} />
       <Routes>
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/login" element={<Login />} />
@@ -53,7 +53,7 @@ const AppContent = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/cart" element={<Navigate to="/checkout" />} />
+        <Route path="/cart" element={<Navigate to="/" />} />
       </Routes>
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </div>

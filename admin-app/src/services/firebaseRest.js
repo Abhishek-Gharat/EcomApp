@@ -4,6 +4,18 @@ const PROJECT_ID = import.meta.env.VITE_FIREBASE_PROJECT_ID;
 const BASE_AUTH_URL = 'https://identitytoolkit.googleapis.com/v1';
 const BASE_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 
+const getFirebaseErrorMessage = (code, fallback) => {
+  const messages = {
+    CONFIGURATION_NOT_FOUND: 'Firebase Authentication is not enabled for this project. In Firebase Console, enable Authentication > Sign-in method > Email/Password, then create the admin user.',
+    EMAIL_NOT_FOUND: 'No account found with this email.',
+    INVALID_PASSWORD: 'Incorrect password.',
+    INVALID_LOGIN_CREDENTIALS: 'Invalid email or password.',
+    USER_DISABLED: 'This account has been disabled.',
+  };
+
+  return messages[code] || fallback;
+};
+
 // Auth
 export const loginWithEmail = async (email, password) => {
   const response = await fetch(`${BASE_AUTH_URL}/accounts:signInWithPassword?key=${API_KEY}`, {
@@ -18,7 +30,7 @@ export const loginWithEmail = async (email, password) => {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error?.message || 'Login failed');
+    throw new Error(getFirebaseErrorMessage(error.error?.message, 'Login failed'));
   }
 
   const data = await response.json();

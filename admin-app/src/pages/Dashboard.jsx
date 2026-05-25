@@ -47,7 +47,7 @@ const Dashboard = () => {
     { label: 'Products', value: stats.products, icon: Package, color: 'bg-blue-500' },
     { label: 'Orders', value: stats.orders, icon: ShoppingCart, color: 'bg-green-500' },
     { label: 'Categories', value: stats.categories, icon: Tag, color: 'bg-purple-500' },
-    { label: 'Revenue', value: `₹${stats.revenue.toFixed(2)}`, icon: DollarSign, color: 'bg-yellow-500' },
+    { label: 'Revenue', value: `Rs. ${stats.revenue.toFixed(2)}`, icon: DollarSign, color: 'bg-yellow-500' },
   ];
 
   return (
@@ -100,7 +100,7 @@ const Dashboard = () => {
                     <tr key={order.id} className="border-b last:border-0">
                       <td className="py-4 font-mono text-sm">{order.id?.slice(-8)}</td>
                       <td className="py-4">{order.userEmail}</td>
-                      <td className="py-4 font-semibold">₹{order.total?.toFixed(2)}</td>
+                      <td className="py-4 font-semibold">Rs. {order.total?.toFixed(2)}</td>
                       <td className="py-4">
                         <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                           order.status === 'delivered' ? 'bg-green-100 text-green-800' :

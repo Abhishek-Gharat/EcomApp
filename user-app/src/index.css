@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-boat-red: #0f766e;
+  --color-boat-black: #111827;
+  --color-boat-dark: #1f2937;
+  --color-boat-gray: #475569;
+  --color-boat-light: #f8fafc;
+}
+
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #f8fafc;
+  color: #111827;
 }
 
 #root {

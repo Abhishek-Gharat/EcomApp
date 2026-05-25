@@ -87,7 +87,7 @@ const Orders = () => {
                       <td className="px-6 py-4 font-mono text-sm">{order.id?.slice(-8)}</td>
                       <td className="px-6 py-4">{order.userEmail}</td>
                       <td className="px-6 py-4">{order.items?.length || 0} items</td>
-                      <td className="px-6 py-4 font-semibold">₹{order.total?.toFixed(2)}</td>
+                      <td className="px-6 py-4 font-semibold">Rs. {order.total?.toFixed(2)}</td>
                       <td className="px-6 py-4">
                         <select
                           value={order.status}
@@ -136,10 +136,10 @@ const Orders = () => {
                                     <div className="flex-1">
                                       <p className="font-medium text-sm">{item.name}</p>
                                       <p className="text-gray-600 text-sm">
-                                        Qty: {item.quantity} × ₹{item.price}
+                                        Qty: {item.quantity} x Rs. {item.price}
                                       </p>
                                     </div>
-                                    <p className="font-semibold">₹{(item.price * item.quantity).toFixed(2)}</p>
+                                    <p className="font-semibold">Rs. {(item.price * item.quantity).toFixed(2)}</p>
                                   </div>
                                 ))}
                               </div>

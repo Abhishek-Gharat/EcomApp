@@ -22,52 +22,54 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
-      <div className="relative h-48 bg-gray-100">
+    <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="relative aspect-[4/3] bg-white p-5">
         {!imageError ? (
           <img
             src={product.image || 'https://via.placeholder.com/300x200?text=No+Image'}
             alt={product.name}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+          <div className="flex h-full w-full items-center justify-center rounded bg-slate-100 text-slate-400">
             No Image
           </div>
         )}
-        <span className="absolute top-2 left-2 bg-boat-black text-white text-xs px-2 py-1 rounded">
+        <span className="absolute left-3 top-3 rounded bg-boat-black px-2.5 py-1 text-xs font-semibold text-white shadow-sm">
           {product.category}
         </span>
       </div>
       
-      <div className="p-4">
-        <h3 className="font-semibold text-lg text-boat-black mb-1 truncate">{product.name}</h3>
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
+      <div className="flex flex-1 flex-col border-t border-slate-100 p-5">
+        <div className="min-h-[96px]">
+          <h3 className="mb-2 line-clamp-1 text-lg font-bold text-boat-black">{product.name}</h3>
+          <p className="line-clamp-2 text-sm leading-6 text-slate-600">{product.description}</p>
+        </div>
         
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-boat-red">₹{product.price}</span>
+        <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+          <span className="text-xl font-bold text-boat-red">Rs. {product.price}</span>
           
           {quantity === 0 ? (
             <button
               onClick={handleAddToCart}
-              className="flex items-center gap-2 bg-boat-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+              className="inline-flex min-w-24 items-center justify-center gap-2 rounded-lg bg-boat-red px-4 py-2.5 font-semibold text-white transition hover:bg-teal-700"
             >
               <ShoppingCart className="w-4 h-4" />
               Add
             </button>
           ) : (
-            <div className="flex items-center gap-3 bg-boat-red rounded-lg">
+            <div className="flex items-center overflow-hidden rounded-lg bg-boat-red">
               <button
                 onClick={handleDecrement}
-                className="p-2 text-white hover:bg-red-600 rounded-l-lg transition"
+                className="p-2.5 text-white transition hover:bg-teal-700"
               >
                 <Minus className="w-4 h-4" />
               </button>
-              <span className="text-white font-semibold min-w-[24px] text-center">{quantity}</span>
+              <span className="min-w-10 text-center font-semibold text-white">{quantity}</span>
               <button
                 onClick={handleIncrement}
-                className="p-2 text-white hover:bg-red-600 rounded-r-lg transition"
+                className="p-2.5 text-white transition hover:bg-teal-700"
               >
                 <Plus className="w-4 h-4" />
               </button>

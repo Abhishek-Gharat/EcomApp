@@ -23,7 +23,7 @@ const Signup = () => {
       setError('Email is required');
       return false;
     }
-    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError('Please enter a valid email');
       return false;
     }
@@ -50,7 +50,7 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await signUp(email, password);
+      await signUp(email, password, name);
       navigate('/');
     } catch (err) {
       setError(err.message || 'Failed to create account');
@@ -65,7 +65,7 @@ const Signup = () => {
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-boat-black mb-2">Create Account</h1>
-            <p className="text-gray-600">Join the boAt family today</p>
+            <p className="text-gray-600">Join PulseBay today</p>
           </div>
 
           {error && (

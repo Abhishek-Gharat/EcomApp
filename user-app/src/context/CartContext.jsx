@@ -5,7 +5,8 @@ const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem('cart');
-    return storedCart ? JSON.parse(storedCart) : [];
+    const parsedCart = storedCart ? JSON.parse(storedCart) : [];
+    return parsedCart.filter((item) => item.productId);
   });
 
   useEffect(() => {
@@ -13,6 +14,11 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product) => {
+    if (!product.id) {
+      console.error('Cannot add product without a Firestore document id', product);
+      return;
+    }
+
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.productId === product.id);
       if (existingItem) {

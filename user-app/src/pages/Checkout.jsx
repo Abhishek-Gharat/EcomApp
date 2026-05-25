@@ -201,7 +201,7 @@ const Checkout = () => {
                     <p className="font-medium line-clamp-1">{item.name}</p>
                     <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                   </div>
-                  <p className="font-semibold">₹{(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="font-semibold">Rs. {(item.price * item.quantity).toFixed(2)}</p>
                 </div>
               ))}
             </div>
@@ -209,7 +209,7 @@ const Checkout = () => {
             <div className="border-t pt-4 space-y-2">
               <div className="flex justify-between text-gray-600">
                 <span>Subtotal</span>
-                <span>₹{getCartTotal().toFixed(2)}</span>
+                <span>Rs. {getCartTotal().toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-gray-600">
                 <span>Shipping</span>
@@ -217,7 +217,7 @@ const Checkout = () => {
               </div>
               <div className="flex justify-between text-xl font-bold pt-2 border-t">
                 <span>Total</span>
-                <span className="text-boat-red">₹{getCartTotal().toFixed(2)}</span>
+                <span className="text-boat-red">Rs. {getCartTotal().toFixed(2)}</span>
               </div>
             </div>
 

@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { getProducts, getCategories } from '../services/firebaseRest';
 import ProductCard from '../components/ProductCard';
 import CategoryFilter from '../components/CategoryFilter';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Sparkles } from 'lucide-react';
+
 
 const Home = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,6 @@ const Home = ({ searchQuery }) => {
   useEffect(() => {
     fetchData();
   }, []);
-
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -32,9 +32,14 @@ const Home = ({ searchQuery }) => {
     }
   };
 
+  const normalizedSearch = searchQuery.trim().toLowerCase();
+
   const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.description?.toLowerCase().includes(searchQuery.toLowerCase());
+    const productName = product.name?.toLowerCase() || '';
+    const productDescription = product.description?.toLowerCase() || '';
+    const matchesSearch = !normalizedSearch ||
+                         productName.includes(normalizedSearch) ||
+                         productDescription.includes(normalizedSearch);
     const matchesCategory = !selectedCategory || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -64,18 +69,24 @@ const Home = ({ searchQuery }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-boat-black text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+    <div className="min-h-screen bg-slate-50">
+      <div className="bg-boat-black text-white py-14">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm text-cyan-100 mb-5">
+            <Sparkles className="w-4 h-4" />
+            Fresh tech picks
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            <span className="text-boat-red">boAt</span> Lifestyle
+            PulseBay Gear
           </h1>
-          <p className="text-gray-400 text-lg">Premium Audio & Wearables</p>
+          <p className="text-slate-300 text-lg max-w-2xl">
+            Shop audio, wearables, and everyday accessories from products managed in Firebase.
+          </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
+      <div className="max-w-7xl mx-auto px-4 py-9">
+        <div className="mb-8 rounded-lg border border-slate-200 bg-white/80 p-3 shadow-sm">
           <CategoryFilter
             categories={categories}
             selectedCategory={selectedCategory}
@@ -84,14 +95,14 @@ const Home = ({ searchQuery }) => {
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-16 bg-white rounded-lg border border-slate-200">
             <p className="text-gray-500 text-lg">No products found.</p>
             {searchQuery && (
               <p className="text-gray-400 mt-2">Try adjusting your search or filters.</p>
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 items-stretch gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

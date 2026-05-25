@@ -45,7 +45,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                   />
                   <div className="flex-1">
                     <h4 className="font-semibold text-sm line-clamp-1">{item.name}</h4>
-                    <p className="text-boat-red font-bold">₹{item.price}</p>
+                    <p className="text-boat-red font-bold">Rs. {item.price}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => updateQuantity(item.productId, item.quantity - 1)}
@@ -78,7 +78,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
           <div className="border-t p-4 space-y-4">
             <div className="flex items-center justify-between text-lg font-bold">
               <span>Total:</span>
-              <span className="text-boat-red">₹{getCartTotal().toFixed(2)}</span>
+              <span className="text-boat-red">Rs. {getCartTotal().toFixed(2)}</span>
             </div>
             <button
               onClick={handleCheckout}

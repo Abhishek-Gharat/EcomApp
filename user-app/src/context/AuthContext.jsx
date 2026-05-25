@@ -27,10 +27,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUp = async (email, password) => {
+  const signUp = async (email, password, name = '') => {
     const data = await signUpWithEmail(email, password);
     setUser(data);
-    await loadUserData(data.localId, data.idToken);
+    const profile = { name, phone: '', addresses: [] };
+    await updateUserData(data.localId, profile, data.idToken);
+    setUserData(profile);
     return data;
   };
 

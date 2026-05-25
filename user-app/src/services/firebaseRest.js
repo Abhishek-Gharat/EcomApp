@@ -4,6 +4,20 @@ const PROJECT_ID = import.meta.env.VITE_FIREBASE_PROJECT_ID;
 const BASE_AUTH_URL = 'https://identitytoolkit.googleapis.com/v1';
 const BASE_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 
+const getFirebaseErrorMessage = (code, fallback) => {
+  const messages = {
+    CONFIGURATION_NOT_FOUND: 'Firebase Authentication is not enabled for this project. In Firebase Console, enable Authentication > Sign-in method > Email/Password.',
+    EMAIL_EXISTS: 'An account already exists with this email.',
+    EMAIL_NOT_FOUND: 'No account found with this email.',
+    INVALID_PASSWORD: 'Incorrect password.',
+    INVALID_LOGIN_CREDENTIALS: 'Invalid email or password.',
+    USER_DISABLED: 'This account has been disabled.',
+    WEAK_PASSWORD: 'Password should be at least 6 characters.',
+  };
+
+  return messages[code] || fallback;
+};
+
 export const signUpWithEmail = async (email, password) => {
   const response = await fetch(`${BASE_AUTH_URL}/accounts:signUp?key=${API_KEY}`, {
     method: 'POST',
@@ -17,7 +31,7 @@ export const signUpWithEmail = async (email, password) => {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error?.message || 'Signup failed');
+    throw new Error(getFirebaseErrorMessage(error.error?.message, 'Signup failed'));
   }
 
   const data = await response.json();
@@ -38,7 +52,7 @@ export const loginWithEmail = async (email, password) => {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error?.message || 'Login failed');
+    throw new Error(getFirebaseErrorMessage(error.error?.message, 'Login failed'));
   }
 
   const data = await response.json();
@@ -58,7 +72,7 @@ export const resetPassword = async (email) => {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error?.message || 'Password reset failed');
+    throw new Error(getFirebaseErrorMessage(error.error?.message, 'Password reset failed'));
   }
 
   return await response.json();
@@ -113,7 +127,7 @@ export const getProducts = async () => {
   }
 
   const data = await response.json();
-  return data.documents?.map(doc => parseFirestoreDocument(doc)) || [];
+  return data.documents?.map(doc => parseFirestoreDocument(doc, doc.name)) || [];
 };
 
 export const getCategories = async () => {
@@ -124,7 +138,7 @@ export const getCategories = async () => {
   }
 
   const data = await response.json();
-  return data.documents?.map(doc => parseFirestoreDocument(doc)) || [];
+  return data.documents?.map(doc => parseFirestoreDocument(doc, doc.name)) || [];
 };
 
 export const placeOrder = async (orderData, idToken) => {
@@ -178,11 +192,7 @@ export const getUserOrders = async (userId, idToken) => {
           op: 'EQUAL',
           value: { stringValue: userId }
         }
-      },
-      orderBy: [{
-        field: { fieldPath: 'createdAt' },
-        direction: 'DESCENDING'
-      }]
+      }
     }
   };
 
@@ -205,10 +215,11 @@ export const getUserOrders = async (userId, idToken) => {
     .map(doc => ({
       id: doc.document.name.split('/').pop(),
       ...parseFirestoreDocument(doc.document)
-    }));
+    }))
+    .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
 };
 
-const parseFirestoreDocument = (doc) => {
+const parseFirestoreDocument = (doc, name) => {
   if (!doc || !doc.fields) return {};
   
   const result = {};
@@ -230,6 +241,9 @@ const parseFirestoreDocument = (doc) => {
     } else if (value.timestampValue) {
       result[key] = value.timestampValue;
     }
+  }
+  if (name) {
+    result.id = name.split('/').pop();
   }
   return result;
 };

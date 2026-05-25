@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { getProducts, createProduct, updateProduct, deleteProduct, getCategories } from '../services/firebaseRest';
+import { getProducts, createProduct, updateProduct, deleteProduct, getCategories, createCategory } from '../services/firebaseRest';
 import { Plus, Edit2, Trash2, X, Loader2 } from 'lucide-react';
 
 const Products = () => {
@@ -8,6 +8,8 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [savingCategory, setSavingCategory] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState({
@@ -52,6 +54,23 @@ const Products = () => {
       fetchData();
     } catch (err) {
       alert(err.message);
+    }
+  };
+
+  const handleCreateCategory = async () => {
+    const categoryName = newCategory.trim();
+    if (!categoryName) return;
+
+    try {
+      setSavingCategory(true);
+      const category = await createCategory({ name: categoryName }, idToken);
+      setCategories((current) => [...current, category]);
+      setFormData((current) => ({ ...current, category: category.name }));
+      setNewCategory('');
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setSavingCategory(false);
     }
   };
 
@@ -131,7 +150,7 @@ const Products = () => {
                     </td>
                     <td className="px-6 py-4 font-medium">{product.name}</td>
                     <td className="px-6 py-4">{product.category}</td>
-                    <td className="px-6 py-4">₹{product.price}</td>
+                    <td className="px-6 py-4">Rs. {product.price}</td>
                     <td className="px-6 py-4">{product.stock}</td>
                     <td className="px-6 py-4">
                       <div className="flex gap-2">
@@ -216,11 +235,35 @@ const Products = () => {
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600"
                   required
                 >
-                  <option value="">Select category</option>
+                  <option value="">
+                    {categories.length === 0 ? 'No categories yet' : 'Select category'}
+                  </option>
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.name}>{cat.name}</option>
                   ))}
                 </select>
+                <div className="mt-3 flex gap-2">
+                  <input
+                    type="text"
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600"
+                    placeholder="Create category, e.g. Life Jackets"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleCreateCategory}
+                    disabled={savingCategory || !newCategory.trim()}
+                    className="px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 disabled:opacity-50"
+                  >
+                    {savingCategory ? 'Adding...' : 'Add'}
+                  </button>
+                </div>
+                {categories.length === 0 && (
+                  <p className="mt-2 text-sm text-gray-500">
+                    Add a category first, then it will be selected for this product.
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>

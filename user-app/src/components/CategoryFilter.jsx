@@ -1,12 +1,12 @@
 const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
   return (
-    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+    <div className="flex gap-3 overflow-x-auto scrollbar-hide">
       <button
         onClick={() => onSelectCategory('')}
-        className={`px-4 py-2 rounded-full whitespace-nowrap transition ${
+        className={`rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition ${
           selectedCategory === ''
             ? 'bg-boat-red text-white'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
         }`}
       >
         All Products
@@ -15,10 +15,10 @@ const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
         <button
           key={category.id}
           onClick={() => onSelectCategory(category.name)}
-          className={`px-4 py-2 rounded-full whitespace-nowrap transition ${
+          className={`rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition ${
             selectedCategory === category.name
               ? 'bg-boat-red text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
           }`}
         >
           {category.name}

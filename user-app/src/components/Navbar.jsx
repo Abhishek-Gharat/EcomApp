@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useState } from 'react';
 
-const Navbar = ({ onSearch }) => {
+const Navbar = ({ onSearch, onCartOpen }) => {
   const { user, logout, isAuthenticated } = useAuth();
   const { getCartCount } = useCart();
   const navigate = useNavigate();
@@ -18,15 +18,21 @@ const Navbar = ({ onSearch }) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch?.(searchQuery);
+    onSearch?.(searchQuery.trim());
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    onSearch?.(value.trim());
   };
 
   return (
     <nav className="bg-boat-black text-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-2xl font-bold text-boat-red">
-            boAt
+          <Link to="/" className="text-2xl font-bold text-cyan-300">
+            PulseBay
           </Link>
 
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
@@ -35,7 +41,7 @@ const Navbar = ({ onSearch }) => {
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchChange}
                 className="w-full px-4 py-2 pl-10 bg-boat-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-boat-red"
               />
               <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
@@ -66,14 +72,14 @@ const Navbar = ({ onSearch }) => {
                 </Link>
               </>
             )}
-            <Link to="/cart" className="relative hover:text-boat-red transition">
+            <button type="button" onClick={onCartOpen} className="relative hover:text-boat-red transition">
               <ShoppingCart className="w-6 h-6" />
               {getCartCount() > 0 && (
                 <span className="absolute -top-2 -right-2 bg-boat-red text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                   {getCartCount()}
                 </span>
               )}
-            </Link>
+            </button>
           </div>
 
           <button
@@ -92,7 +98,7 @@ const Navbar = ({ onSearch }) => {
                   type="text"
                   placeholder="Search products..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={handleSearchChange}
                   className="w-full px-4 py-2 pl-10 bg-boat-dark text-white rounded-lg"
                 />
                 <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
@@ -111,10 +117,10 @@ const Navbar = ({ onSearch }) => {
                   <Link to="/signup" className="text-boat-red">Sign Up</Link>
                 </>
               )}
-              <Link to="/cart" className="flex items-center gap-2 hover:text-boat-red">
+              <button type="button" onClick={onCartOpen} className="flex items-center gap-2 hover:text-boat-red text-left">
                 <ShoppingCart className="w-5 h-5" />
                 Cart ({getCartCount()})
-              </Link>
+              </button>
             </div>
           </div>
         )}

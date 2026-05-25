@@ -16,8 +16,8 @@ const Sidebar = () => {
   return (
     <aside className="w-64 bg-slate-900 text-white min-h-screen flex flex-col">
       <div className="p-6 border-b border-slate-800">
-        <h1 className="text-2xl font-bold">Admin Panel</h1>
-        <p className="text-slate-400 text-sm mt-1">boAt Store</p>
+        <h1 className="text-2xl font-bold">PulseBay Admin</h1>
+        <p className="text-slate-400 text-sm mt-1">Store operations</p>
       </div>
 
       <nav className="flex-1 p-4">
