@@ -51,10 +51,10 @@ const Profile = () => {
       <div className="max-w-2xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-boat-red rounded-full flex items-center justify-center mx-auto mb-4">
-              <User className="w-10 h-10 text-white" />
+            <div className="w-20 h-20 bg-pulse-gold rounded-full flex items-center justify-center mx-auto mb-4">
+              <User className="w-10 h-10 text-pulse-bg" />
             </div>
-            <h1 className="text-2xl font-bold text-boat-black">Your Profile</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Your Profile</h1>
             <p className="text-gray-600">{user?.email}</p>
           </div>
 
@@ -80,7 +80,7 @@ const Profile = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                 placeholder="Enter your full name"
               />
             </div>
@@ -94,7 +94,7 @@ const Profile = () => {
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                 placeholder="Enter your phone number"
               />
             </div>
@@ -125,13 +125,13 @@ const Profile = () => {
                   type="text"
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                   placeholder="Add a new address"
                   onKeyPress={(e) => e.key === 'Enter' && handleAddAddress()}
                 />
                 <button
                   onClick={handleAddAddress}
-                  className="px-4 py-3 bg-boat-black text-white rounded-lg hover:bg-gray-800"
+                  className="px-4 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition"
                 >
                   <Plus className="w-5 h-5" />
                 </button>
@@ -141,7 +141,7 @@ const Profile = () => {
             <button
               onClick={handleSave}
               disabled={loading}
-              className="w-full bg-boat-red text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg py-3 rounded-xl font-bold transition disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

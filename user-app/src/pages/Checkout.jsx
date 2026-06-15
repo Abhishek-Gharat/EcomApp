@@ -69,20 +69,20 @@ const Checkout = () => {
         <div className="max-w-md w-full text-center">
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
-            <h1 className="text-3xl font-bold text-boat-black mb-4">Order Placed!</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Order Placed!</h1>
             <p className="text-gray-600 mb-8">
               Thank you for your order. We'll deliver your items soon!
             </p>
             <div className="space-y-3">
               <button
                 onClick={() => navigate('/orders')}
-                className="w-full bg-boat-red text-white py-3 rounded-lg font-semibold hover:bg-red-600"
+                className="w-full bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg py-3 rounded-xl font-bold transition"
               >
                 View Orders
               </button>
               <button
                 onClick={() => navigate('/')}
-                className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200"
+                className="w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition"
               >
                 Continue Shopping
               </button>
@@ -96,7 +96,7 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-boat-black mb-8">Checkout</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
 
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
@@ -120,7 +120,7 @@ const Checkout = () => {
                       key={index}
                       className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition ${
                         selectedAddress === address
-                          ? 'border-boat-red bg-red-50'
+                          ? 'border-pulse-gold bg-pulse-gold/10'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -156,7 +156,7 @@ const Checkout = () => {
                   <textarea
                     value={newAddress}
                     onChange={(e) => setNewAddress(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                     rows="3"
                     placeholder="Enter your delivery address..."
                   />
@@ -171,8 +171,8 @@ const Checkout = () => {
               </h2>
               <div className="p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-boat-red rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">COD</span>
+                  <div className="w-10 h-10 bg-pulse-gold rounded-lg flex items-center justify-center">
+                    <span className="text-pulse-bg font-bold text-sm">COD</span>
                   </div>
                   <div>
                     <p className="font-semibold">Cash on Delivery</p>
@@ -217,14 +217,14 @@ const Checkout = () => {
               </div>
               <div className="flex justify-between text-xl font-bold pt-2 border-t">
                 <span>Total</span>
-                <span className="text-boat-red">Rs. {getCartTotal().toFixed(2)}</span>
+                <span className="text-pulse-gold-dark">Rs. {getCartTotal().toFixed(2)}</span>
               </div>
             </div>
 
             <button
               onClick={handlePlaceOrder}
               disabled={loading}
-              className="w-full mt-6 bg-boat-red text-white py-4 rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full mt-6 bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg py-4 rounded-xl font-bold transition disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

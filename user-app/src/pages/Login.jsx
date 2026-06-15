@@ -56,7 +56,7 @@ const Login = () => {
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-boat-black mb-2">Welcome Back</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
             <p className="text-gray-600">Sign in to your PulseBay account</p>
           </div>
 
@@ -77,7 +77,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                   placeholder="Enter your email"
                 />
               </div>
@@ -93,7 +93,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                   placeholder="Enter your password"
                 />
                 <button
@@ -108,10 +108,10 @@ const Login = () => {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="w-4 h-4 text-boat-red border-gray-300 rounded" />
+                <input type="checkbox" className="w-4 h-4 accent-pulse-gold border-gray-300 rounded" />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
               </label>
-              <Link to="/forgot-password" className="text-sm text-boat-red hover:underline">
+              <Link to="/forgot-password" className="text-sm font-semibold text-pulse-gold-dark hover:underline">
                 Forgot password?
               </Link>
             </div>
@@ -119,7 +119,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-boat-red text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg py-3 rounded-xl font-bold transition disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -134,7 +134,7 @@ const Login = () => {
 
           <p className="text-center mt-6 text-gray-600">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-boat-red font-semibold hover:underline">
+            <Link to="/signup" className="text-pulse-gold-dark font-semibold hover:underline">
               Sign up
             </Link>
           </p>

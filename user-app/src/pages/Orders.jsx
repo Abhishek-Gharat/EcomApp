@@ -59,7 +59,7 @@ const Orders = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <Package className="w-12 h-12 text-boat-red animate-bounce mx-auto" />
+          <Package className="w-12 h-12 text-pulse-gold animate-bounce mx-auto" />
           <p className="mt-4 text-gray-600">Loading your orders...</p>
         </div>
       </div>
@@ -69,7 +69,7 @@ const Orders = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-boat-black mb-8">My Orders</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
 
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
@@ -97,7 +97,7 @@ const Orders = () => {
                         {getStatusIcon(order.status)}
                       </div>
                       <div>
-                        <p className="font-semibold text-boat-black">Order #{order.id?.slice(-8)}</p>
+                        <p className="font-semibold text-gray-900">Order #{order.id?.slice(-8)}</p>
                         <p className="text-sm text-gray-600">
                           {new Date(order.createdAt).toLocaleDateString('en-IN', {
                             day: 'numeric',

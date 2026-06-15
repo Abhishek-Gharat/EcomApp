@@ -35,13 +35,13 @@ const ForgotPassword = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-boat-red mb-6">
+          <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-pulse-gold-dark mb-6">
             <ArrowLeft className="w-4 h-4" />
             Back to login
           </Link>
 
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-boat-black mb-2">Reset Password</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Reset Password</h1>
             <p className="text-gray-600">Enter your email to receive a reset link</p>
           </div>
 
@@ -54,7 +54,7 @@ const ForgotPassword = () => {
               </p>
               <Link
                 to="/login"
-                className="inline-block bg-boat-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-600"
+                className="inline-block bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg px-8 py-3 rounded-xl font-bold transition"
               >
                 Back to Login
               </Link>
@@ -78,7 +78,7 @@ const ForgotPassword = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-boat-red focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pulse-gold/50 focus:border-pulse-gold"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -87,7 +87,7 @@ const ForgotPassword = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-boat-red text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg py-3 rounded-xl font-bold transition disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>

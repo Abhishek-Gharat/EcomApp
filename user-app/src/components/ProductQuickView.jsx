@@ -43,7 +43,7 @@ const ProductQuickView = ({ product, isOpen, onClose }) => {
             {/* Price */}
             <div className="mb-6">
               <div className="flex gap-3 items-baseline mb-2">
-                <span className="text-3xl font-black text-pulse-accent">Rs. {product.price}</span>
+                <span className="text-3xl font-black text-pulse-gold">Rs. {product.price}</span>
                 <span className="text-lg line-through text-pulse-text-secondary">Rs. {Math.round(product.price * 1.4)}</span>
               </div>
               <p className="text-green-400 text-sm font-bold">In Stock • Free Shipping</p>
@@ -58,12 +58,12 @@ const ProductQuickView = ({ product, isOpen, onClose }) => {
             <div className="flex gap-3 mt-auto">
               <button
                 onClick={handleAddToCart}
-                className="flex-1 bg-pulse-accent hover:shadow-glow-intense text-pulse-bg font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+                className="flex-1 bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg font-bold py-3 rounded-xl transition flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
                 Add to Cart
               </button>
-              <button className="p-3 bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg rounded-lg transition">
+              <button className="p-3 bg-pulse-bg border border-pulse-border hover:border-pulse-gold text-pulse-text hover:text-pulse-gold rounded-xl transition">
                 <Heart className="w-5 h-5" />
               </button>
             </div>

@@ -128,7 +128,7 @@ const ProductDetail = () => {
 
               {/* Price */}
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-4xl font-black text-pulse-accent">Rs. {product.price}</span>
+                <span className="text-4xl font-black text-pulse-gold">Rs. {product.price}</span>
                 <span className="text-xl line-through text-pulse-text-secondary">Rs. {product.originalPrice}</span>
               </div>
 
@@ -182,12 +182,12 @@ const ProductDetail = () => {
               <div className="flex gap-3">
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 bg-pulse-accent hover:shadow-glow-intense text-pulse-bg font-bold py-4 rounded-lg transition"
+                  className="flex-1 bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg font-bold py-4 rounded-xl transition"
                 >
                   <ShoppingCart className="w-5 h-5 inline mr-2" />
                   ADD TO CART
                 </button>
-                <button className="px-6 py-4 bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg font-bold rounded-lg transition">
+                <button className="px-6 py-4 bg-pulse-gray border border-pulse-border hover:border-pulse-gold text-pulse-text hover:text-pulse-gold font-bold rounded-xl transition">
                   <Heart className="w-5 h-5" />
                 </button>
               </div>
