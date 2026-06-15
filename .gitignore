@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+
+# Env / secrets
+.env
+.env.local
+*.local
+example.txt
+
+# AI-generated scratch docs (keep README.md and real docs)
+*_GUIDE.md
+*_ANALYSIS.md
+*_IMPLEMENTATION.md
+*_RECOMMENDATION.md
+*_SETUP.md
+*_FIX.md
+*_COMPLETION.md
+*_QUICKSTART.md
+*_FEATURES.md
+3D_HERO_*.md
+RUN_3D_HERO.md
