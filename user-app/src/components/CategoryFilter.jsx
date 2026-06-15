@@ -3,10 +3,10 @@ const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
     <div className="flex gap-3 overflow-x-auto scrollbar-hide">
       <button
         onClick={() => onSelectCategory('')}
-        className={`rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition ${
+        className={`rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition duration-300 ${
           selectedCategory === ''
-            ? 'bg-boat-red text-white'
-            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+            ? 'bg-pulse-accent text-pulse-bg shadow-glow'
+            : 'bg-pulse-gray text-pulse-text border border-pulse-accent/30 hover:border-pulse-accent/60 hover:shadow-glow'
         }`}
       >
         All Products
@@ -15,10 +15,10 @@ const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
         <button
           key={category.id}
           onClick={() => onSelectCategory(category.name)}
-          className={`rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition ${
+          className={`rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition duration-300 ${
             selectedCategory === category.name
-              ? 'bg-boat-red text-white'
-              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              ? 'bg-pulse-accent text-pulse-bg shadow-glow'
+              : 'bg-pulse-gray text-pulse-text border border-pulse-accent/30 hover:border-pulse-accent/60 hover:shadow-glow'
           }`}
         >
           {category.name}

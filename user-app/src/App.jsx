@@ -5,6 +5,7 @@ import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import CartDrawer from './components/CartDrawer';
 import Home from './pages/Home';
+import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
@@ -22,10 +23,13 @@ const AppContent = () => {
   const [cartOpen, setCartOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-pulse-bg">
       <Navbar onSearch={setSearchQuery} onCartOpen={() => setCartOpen(true)} />
-      <Routes>
+      {/* Content with top padding for fixed navbar (h-16 = 64px) */}
+      <div className="pt-16">
+        <Routes>
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -54,8 +58,9 @@ const AppContent = () => {
           }
         />
         <Route path="/cart" element={<Navigate to="/" />} />
-      </Routes>
-      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+        </Routes>
+        <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      </div>
     </div>
   );
 };

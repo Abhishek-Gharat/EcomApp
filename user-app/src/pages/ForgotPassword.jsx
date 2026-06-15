@@ -13,15 +13,16 @@ const ForgotPassword = () => {
     e.preventDefault();
     setError('');
     setSuccess(false);
+    const trimmedEmail = email.trim();
 
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setError('Please enter a valid email address');
       return;
     }
 
     try {
       setLoading(true);
-      await resetPassword(email);
+      await resetPassword(trimmedEmail);
       setSuccess(true);
     } catch (err) {
       setError(err.message || 'Failed to send reset email');

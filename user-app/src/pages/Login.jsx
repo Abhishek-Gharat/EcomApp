@@ -13,11 +13,13 @@ const Login = () => {
   const navigate = useNavigate();
 
   const validateForm = () => {
-    if (!email.trim()) {
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
       setError('Email is required');
       return false;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setError('Please enter a valid email');
       return false;
     }
@@ -40,7 +42,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      await login(email, password);
+      await login(email.trim(), password);
       navigate('/');
     } catch (err) {
       setError(err.message || 'Invalid credentials');

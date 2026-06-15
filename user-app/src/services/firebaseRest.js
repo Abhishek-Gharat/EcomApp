@@ -19,11 +19,12 @@ const getFirebaseErrorMessage = (code, fallback) => {
 };
 
 export const signUpWithEmail = async (email, password) => {
+  const trimmedEmail = email.trim();
   const response = await fetch(`${BASE_AUTH_URL}/accounts:signUp?key=${API_KEY}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      email,
+      email: trimmedEmail,
       password,
       returnSecureToken: true
     })
@@ -40,11 +41,12 @@ export const signUpWithEmail = async (email, password) => {
 };
 
 export const loginWithEmail = async (email, password) => {
+  const trimmedEmail = email.trim();
   const response = await fetch(`${BASE_AUTH_URL}/accounts:signInWithPassword?key=${API_KEY}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      email,
+      email: trimmedEmail,
       password,
       returnSecureToken: true
     })
@@ -61,12 +63,13 @@ export const loginWithEmail = async (email, password) => {
 };
 
 export const resetPassword = async (email) => {
+  const trimmedEmail = email.trim();
   const response = await fetch(`${BASE_AUTH_URL}/accounts:sendOobCode?key=${API_KEY}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       requestType: 'PASSWORD_RESET',
-      email
+      email: trimmedEmail
     })
   });
 

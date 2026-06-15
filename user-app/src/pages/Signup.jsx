@@ -15,15 +15,17 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const validateForm = () => {
+    const trimmedEmail = email.trim();
+
     if (!name.trim()) {
       setError('Name is required');
       return false;
     }
-    if (!email.trim()) {
+    if (!trimmedEmail) {
       setError('Email is required');
       return false;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setError('Please enter a valid email');
       return false;
     }
@@ -50,7 +52,7 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await signUp(email, password, name);
+      await signUp(email.trim(), password, name.trim());
       navigate('/');
     } catch (err) {
       setError(err.message || 'Failed to create account');
