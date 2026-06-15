@@ -11,26 +11,30 @@ export default defineConfig({
         pulse: {
           bg: '#0f1419',
           'bg-dark': '#0a0d12',
+          'bg-elevated': '#141b24',
           accent: '#00d9ff',
           'accent-dark': '#00a8cc',
-          gold: '#d4af37',
-          'gold-dark': '#a88f2a',
+          // Premium amber/gold — the conversion color
+          gold: '#FFC107',
+          'gold-light': '#FFD54F',
+          'gold-dark': '#E0A800',
           text: '#ffffff',
-          'text-secondary': '#b0b8c1',
+          'text-secondary': '#9aa6b2',
+          'text-muted': '#6b7785',
           gray: '#1a2332',
           'gray-light': '#2a3a4a',
+          border: '#243140',
         },
-        boat: {
-          red: '#FF0000',
-          black: '#0A0A0A',
-          dark: '#1A1A1A',
-          gray: '#2A2A2A',
-          light: '#F5F5F5',
-        }
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(0, 217, 255, 0.6)',
-        'glow-intense': '0 0 40px rgba(0, 217, 255, 0.8)',
+        'glow': '0 0 20px rgba(0, 217, 255, 0.45)',
+        'glow-intense': '0 0 40px rgba(0, 217, 255, 0.7)',
+        // Gold conversion glows
+        'gold-glow': '0 0 24px rgba(255, 193, 7, 0.35)',
+        'gold-glow-intense': '0 10px 35px -5px rgba(255, 193, 7, 0.5)',
+        // Layered depth for cards
+        'card': '0 4px 24px -2px rgba(0, 0, 0, 0.4)',
+        'card-hover': '0 18px 45px -8px rgba(0, 0, 0, 0.6)',
       },
       keyframes: {
         'glow-pulse': {
@@ -41,10 +45,23 @@ export default defineConfig({
           'from': { opacity: '0', transform: 'translateY(20px)' },
           'to': { opacity: '1', transform: 'translateY(0)' },
         },
+        'fade-up': {
+          'from': { opacity: '0', transform: 'translateY(24px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-14px)' },
+        },
+        'shimmer': {
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
       animation: {
         'glow-pulse': 'glow-pulse 2s infinite',
         'slide-up': 'slide-up 0.6s ease-out',
+        'fade-up': 'fade-up 0.7s ease-out both',
+        'float': 'float 6s ease-in-out infinite',
       },
     },
   },

@@ -1,23 +1,89 @@
 @import "tailwindcss";
 
-@theme {
-  --color-boat-red: #0f766e;
-  --color-boat-black: #111827;
-  --color-boat-dark: #1f2937;
-  --color-boat-gray: #475569;
-  --color-boat-light: #f8fafc;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
-  background: #f8fafc;
-  color: #111827;
+  /* Dark theme to match the app shell (was light — caused white flash) */
+  background: #0f1419;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+/* Premium gold-tinted scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0d12;
+}
+::-webkit-scrollbar-thumb {
+  background: #243140;
+  border-radius: 8px;
+  border: 2px solid #0a0d12;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFC107;
+}
+
+/* Hide scrollbar for horizontal filter rows */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Selection in brand gold */
+::selection {
+  background: rgba(255, 193, 7, 0.3);
+  color: #ffffff;
+}
+
+/* Reusable gradient text accent */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFD54F 0%, #FFC107 50%, #E0A800 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer sweep used on primary CTAs */
+.shimmer-on-hover {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-on-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: none;
+}
+.shimmer-on-hover:hover::after {
+  left: 125%;
+  transition: left 0.7s ease;
 }
 
 /* Sketchfab iframe styling - hide UI, show only model */
@@ -29,36 +95,14 @@ iframe[title="Marshall Major IV headphones"] {
   display: block !important;
 }
 
-/* Hide Sketchfab play button and UI elements via CSS */
-iframe[title="Marshall Major IV headphones"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Hide embedded UI elements inside iframe by using data attribute */
-iframe[src*="sketchfab.com"] {
-  --sketchfab-ui-display: none !important;
-}
-
-/* Hero 3D container optimization */
-.hero-3d-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
-}
-
-/* Ensure proper 3D model viewport */
-[data-component="hero-3d"] {
-  perspective: 1000px;
-  transform-style: preserve-3d;
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

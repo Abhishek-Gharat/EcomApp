@@ -8,7 +8,10 @@ import Hero from '../components/Hero';
 import TestimonialsCarousel from '../components/Testimonials/TestimonialsCarousel';
 import NewsletterSignup from '../components/Newsletter/NewsletterSignup';
 import FinalCTA from '../components/CTA/FinalCTA';
-import { Loader2, Star } from 'lucide-react';
+import SectionHeader from '../components/Common/SectionHeader';
+import Reveal from '../components/Common/Reveal';
+import CountUp from '../components/Common/CountUp';
+import { Loader2, Zap, Target, Rocket } from 'lucide-react';
 
 const Home = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
@@ -114,22 +117,44 @@ const Home = ({ searchQuery }) => {
       {/* Hero Section */}
       <Hero />
 
+      {/* Social proof stats bar */}
+      <div className="border-y border-pulse-border bg-pulse-bg-dark">
+        <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: 10, suffix: 'K+', label: 'Happy Customers' },
+            { value: 500, suffix: '+', label: 'Products' },
+            { value: 98, suffix: '%', label: 'Satisfaction' },
+            { value: 24, suffix: '/7', label: 'Support' },
+          ].map((stat, idx) => (
+            <Reveal key={stat.label} delay={idx * 0.1} className="text-center">
+              <div className="text-3xl md:text-4xl font-black text-pulse-gold">
+                <CountUp end={stat.value} suffix={stat.suffix} />
+              </div>
+              <div className="text-xs md:text-sm uppercase tracking-wider text-pulse-text-muted mt-1">
+                {stat.label}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
       {/* Products Section */}
-      <div className="bg-pulse-bg-dark py-20" data-section="products">
+      <div className="bg-pulse-bg-dark py-24" data-section="products">
         <div className="max-w-7xl mx-auto px-4">
           {/* Featured Products */}
-          <div className="mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-pulse-text mb-4 uppercase tracking-tight">
-              LOAD UP
-            </h2>
-            <p className="text-pulse-text-secondary text-lg mb-10">Featured gear. Ready to ship.</p>
+          <div className="mb-24">
+            <SectionHeader
+              eyebrow="Featured"
+              title="Load Up"
+              subtitle="Hand-picked gear, ready to ship. Premium quality at fair prices."
+            />
 
             {error && (
-              <div className="mb-8 p-4 rounded-lg bg-red-900/20 border border-red-500/30">
+              <div className="mb-8 p-4 rounded-xl bg-red-900/20 border border-red-500/30">
                 <p className="text-red-400 mb-3">{error}</p>
                 <button
                   onClick={fetchData}
-                  className="bg-pulse-accent text-pulse-bg px-4 py-2 rounded-lg font-semibold hover:bg-pulse-accent-dark transition-colors"
+                  className="bg-pulse-gold text-pulse-bg px-4 py-2 rounded-lg font-semibold hover:bg-pulse-gold-light transition-colors"
                 >
                   Retry
                 </button>
@@ -137,20 +162,21 @@ const Home = ({ searchQuery }) => {
             )}
 
             {filteredProducts.length === 0 ? (
-              <div className="text-center py-16 bg-pulse-gray rounded-lg border border-pulse-accent/20">
+              <div className="text-center py-16 bg-pulse-gray rounded-2xl border border-pulse-border">
                 <p className="text-pulse-text-secondary text-lg">No products found.</p>
                 {searchQuery && (
-                  <p className="text-pulse-text-secondary mt-2 text-sm">Try adjusting your search or filters.</p>
+                  <p className="text-pulse-text-muted mt-2 text-sm">Try adjusting your search or filters.</p>
                 )}
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    onQuickView={setQuickViewProduct}
-                  />
+                {filteredProducts.map((product, idx) => (
+                  <Reveal key={product.id} delay={Math.min(idx * 0.05, 0.3)}>
+                    <ProductCard
+                      product={product}
+                      onQuickView={setQuickViewProduct}
+                    />
+                  </Reveal>
                 ))}
               </div>
             )}
@@ -164,44 +190,39 @@ const Home = ({ searchQuery }) => {
           </div>
 
           {/* Category Section */}
-          <div className="mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-pulse-text mb-8 uppercase">
-              FIND YOUR WEAPON
-            </h2>
-            <div className="mb-8 rounded-lg bg-pulse-gray/50 p-4 border border-pulse-accent/20">
+          <div className="mb-24">
+            <SectionHeader
+              eyebrow="Browse"
+              title="Find Your Weapon"
+              subtitle="Filter by category to zero in on exactly what you need."
+            />
+            <Reveal className="rounded-2xl bg-pulse-gray/50 p-5 border border-pulse-border">
               <CategoryFilter
                 categories={categories}
                 selectedCategory={selectedCategory}
                 onSelectCategory={setSelectedCategory}
               />
-            </div>
+            </Reveal>
           </div>
 
           {/* Why PulseBay Section */}
-          <div className="mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-pulse-text mb-12 uppercase">
-              WHY US
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="mb-4">
+            <SectionHeader eyebrow="Why PulseBay" title="Built Different" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { icon: '⚡', title: 'Charged', desc: 'Tech that empowers movement. Nothing less.', color: 'cyan' },
-                { icon: '🎯', title: 'Focused', desc: 'Curated gear for people who actually use it.', color: 'gold' },
-                { icon: '🚀', title: 'Fast', desc: 'Quick shipping. Faster support. Always on.', color: 'cyan' }
+                { Icon: Zap, title: 'Charged', desc: 'Tech that empowers movement. Nothing less.' },
+                { Icon: Target, title: 'Focused', desc: 'Curated gear for people who actually use it.' },
+                { Icon: Rocket, title: 'Fast', desc: 'Quick shipping. Faster support. Always on.' }
               ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`bg-pulse-gray rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 ${
-                    item.color === 'gold'
-                      ? 'border-pulse-gold/20 hover:border-pulse-gold/60 hover:shadow-lg hover:shadow-pulse-gold/20'
-                      : 'border-pulse-accent/20 hover:border-pulse-accent/60 hover:shadow-glow'
-                  }`}
-                >
-                  <div className="text-5xl mb-4">{item.icon}</div>
-                  <h3 className={`text-xl font-bold mb-2 uppercase ${item.color === 'gold' ? 'text-pulse-gold' : 'text-pulse-accent'}`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-pulse-text-secondary text-sm">{item.desc}</p>
-                </div>
+                <Reveal key={item.title} delay={idx * 0.1}>
+                  <div className="group h-full bg-pulse-gray rounded-2xl p-7 border border-pulse-border transition-all duration-300 hover:-translate-y-1.5 hover:border-pulse-gold/50 hover:shadow-card-hover">
+                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-pulse-gold/15 text-pulse-gold transition-colors group-hover:bg-pulse-gold group-hover:text-pulse-bg">
+                      <item.Icon className="w-7 h-7" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 uppercase text-pulse-text">{item.title}</h3>
+                    <p className="text-pulse-text-secondary text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>

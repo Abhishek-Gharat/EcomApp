@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
@@ -23,10 +24,10 @@ const AppContent = () => {
   const [cartOpen, setCartOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-pulse-bg">
+    <div className="min-h-screen bg-pulse-bg flex flex-col">
       <Navbar onSearch={setSearchQuery} onCartOpen={() => setCartOpen(true)} />
       {/* Content with top padding for fixed navbar (h-16 = 64px) */}
-      <div className="pt-16">
+      <div className="pt-16 flex-1">
         <Routes>
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/product/:id" element={<ProductDetail />} />
@@ -61,6 +62,7 @@ const AppContent = () => {
         </Routes>
         <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
       </div>
+      <Footer />
     </div>
   );
 };

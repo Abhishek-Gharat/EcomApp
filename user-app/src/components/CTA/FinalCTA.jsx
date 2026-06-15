@@ -119,12 +119,12 @@ const FinalCTA = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleScrollToProducts}
-            className="group relative px-10 md:px-14 py-5 md:py-6 bg-pulse-accent text-pulse-bg font-black text-lg md:text-xl rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl shadow-lg"
+            className="group relative px-10 md:px-14 py-5 md:py-6 bg-pulse-gold text-pulse-bg font-black text-lg md:text-xl rounded-xl overflow-hidden transition-all duration-300 hover:shadow-gold-glow-intense shadow-lg"
           >
             {/* Animated background glow */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-pulse-gold via-pulse-accent to-pulse-gold opacity-0"
-              animate={{ opacity: isHovered ? 0.3 : 0 }}
+              className="absolute inset-0 bg-gradient-to-r from-pulse-gold-light via-pulse-gold to-pulse-gold-light opacity-0"
+              animate={{ opacity: isHovered ? 0.4 : 0 }}
               transition={{ duration: 0.3 }}
             />
 
