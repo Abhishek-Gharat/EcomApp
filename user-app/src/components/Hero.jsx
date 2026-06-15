@@ -87,7 +87,7 @@ const Hero = () => {
               executionWhileOutOfViewport
               executionWhileNotRendered
               webShare
-              src="https://sketchfab.com/models/102ca77328c24c4b890e4f7c71bda101/embed?annotations=false&ui_infos=false&ui_controls=false&ui_watermark=false&autostart=1"
+              src="https://sketchfab.com/models/102ca77328c24c4b890e4f7c71bda101/embed?annotations=false&ui_infos=false&ui_controls=false&ui_watermark=false&ui_inspector=false&autostart=1"
               className="w-full h-full"
               style={{
                 borderRadius: '1rem',
