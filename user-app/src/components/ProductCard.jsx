@@ -110,10 +110,10 @@ const ProductCard = ({ product, onQuickView }) => {
           {quantity === 0 ? (
             <button
               onClick={handleAddToCart}
-              className="inline-flex min-w-24 items-center justify-center gap-2 rounded-xl bg-pulse-gold hover:bg-pulse-gold-light text-pulse-bg px-4 py-2.5 font-bold transition duration-300 hover:shadow-gold-glow active:scale-95"
+              className="group/add shimmer-on-hover relative inline-flex min-w-24 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-br from-pulse-gold-light via-pulse-gold to-pulse-gold-dark px-5 py-2.5 font-bold text-pulse-bg shadow-gold-glow ring-1 ring-pulse-gold-light/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-gold-glow-intense active:scale-95"
             >
-              <ShoppingCart className="w-4 h-4" />
-              Add
+              <ShoppingCart className="w-4 h-4 transition-transform duration-300 group-hover/add:-translate-y-0.5 group-hover/add:-rotate-12" />
+              <span className="tracking-wide">Add</span>
             </button>
           ) : (
             <div className="flex items-center overflow-hidden rounded-xl bg-pulse-gold/15 border border-pulse-gold/50">

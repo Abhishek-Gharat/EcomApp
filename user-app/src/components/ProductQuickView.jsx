@@ -58,9 +58,9 @@ const ProductQuickView = ({ product, isOpen, onClose }) => {
             <div className="flex gap-3 mt-auto">
               <button
                 onClick={handleAddToCart}
-                className="flex-1 bg-pulse-gold hover:bg-pulse-gold-dark text-pulse-bg font-bold py-3 rounded-xl transition flex items-center justify-center gap-2"
+                className="group/add shimmer-on-hover relative flex-1 overflow-hidden bg-gradient-to-br from-pulse-gold-light via-pulse-gold to-pulse-gold-dark text-pulse-bg font-bold py-3 rounded-xl shadow-gold-glow ring-1 ring-pulse-gold-light/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-gold-glow-intense active:scale-95 flex items-center justify-center gap-2"
               >
-                <ShoppingCart className="w-5 h-5" />
+                <ShoppingCart className="w-5 h-5 transition-transform duration-300 group-hover/add:-translate-y-0.5 group-hover/add:-rotate-12" />
                 Add to Cart
               </button>
               <button className="p-3 bg-pulse-bg border border-pulse-border hover:border-pulse-gold text-pulse-text hover:text-pulse-gold rounded-xl transition">
