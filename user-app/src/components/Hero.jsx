@@ -71,14 +71,25 @@ const Hero = () => {
           Premium Gear — Charged &amp; Ready
         </div>
 
-        {/* Main Headline */}
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-pulse-text mb-6 tracking-tight leading-[0.92]">
-          GET <span className="text-gradient-gold">CHARGED</span>
+        {/* Main Headline — artistic display type */}
+        <h1 className="font-display mb-6 flex flex-col items-center leading-[0.85]">
+          <span className="text-base md:text-lg font-semibold uppercase tracking-[0.55em] text-pulse-text-secondary pl-[0.55em] mb-3 md:mb-4">
+            Get
+          </span>
+          <span className="text-7xl md:text-8xl lg:text-9xl font-extrabold uppercase text-gradient-gold drop-shadow-[0_4px_30px_rgba(255,193,7,0.25)]">
+            Charged
+          </span>
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-2xl text-pulse-text-secondary mb-9 max-w-2xl leading-relaxed">
-          Premium audio tech built for people who move. Fast shipping, real warranties, zero compromise.
+        <p
+          className="text-base md:text-xl text-pulse-text-secondary mb-9 max-w-xl leading-relaxed"
+          style={{ fontFamily: '"Space Grotesk", Inter, sans-serif' }}
+        >
+          Premium audio tech built for people who move.{' '}
+          <span className="text-pulse-text font-medium">
+            Fast shipping, real warranties, zero compromise.
+          </span>
         </p>
 
         {/* Hero 3D Model */}

@@ -7,9 +7,9 @@ html {
 body {
   margin: 0;
   font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
-  /* Dark theme to match the app shell (was light — caused white flash) */
-  background: #0f1419;
-  color: #ffffff;
+  /* Keep the previous light page background */
+  background: #f8fafc;
+  color: #111827;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -20,18 +20,24 @@ body {
   min-height: 100vh;
 }
 
-/* Premium gold-tinted scrollbar */
+/* Artistic designer display font (headlines) */
+.font-display {
+  font-family: "Syne", "Space Grotesk", Inter, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Premium gold-tinted scrollbar (light track) */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0d12;
+  background: #e5e9ef;
 }
 ::-webkit-scrollbar-thumb {
-  background: #243140;
+  background: #cbd2db;
   border-radius: 8px;
-  border: 2px solid #0a0d12;
+  border: 2px solid #e5e9ef;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #FFC107;
