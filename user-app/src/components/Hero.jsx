@@ -70,25 +70,33 @@ const Hero = () => {
           Tech built for people who move. Fast.
         </p>
 
-        {/* Hero Image */}
-        <div className="mb-12 w-full max-w-md h-96 md:h-[500px] relative">
-          <div className="relative w-full h-full flex items-center justify-center">
-            <div
-              ref={imageRef}
-              className="relative w-full h-full transition-transform duration-100 ease-out"
-            >
-              {/* Placeholder for hero product image */}
-              <div className="w-full h-full bg-gradient-to-b from-pulse-accent/20 to-transparent rounded-2xl flex items-center justify-center border border-pulse-accent/30 shadow-glow">
-                <div className="text-center">
-                  <div className="text-pulse-accent mb-4 text-6xl">🎧</div>
-                  <p className="text-pulse-text-secondary text-sm">Hero product image</p>
-                  <p className="text-pulse-text-secondary text-xs mt-2">(Replace with hero.webp)</p>
-                </div>
-              </div>
-              {/* Glow pulse effect */}
-              <div className="absolute inset-0 rounded-2xl shadow-glow animate-glow-pulse pointer-events-none" />
-            </div>
+        {/* Hero 3D Model */}
+        <div className="mb-12 w-full max-w-2xl h-96 md:h-[500px] lg:h-[600px] relative rounded-2xl overflow-hidden border border-pulse-accent/30 shadow-glow bg-pulse-gray">
+          <div
+            ref={imageRef}
+            className="relative w-full h-full transition-transform duration-100 ease-out"
+          >
+            <iframe
+              title="Marshall Major IV headphones"
+              frameBorder="0"
+              allowFullScreen
+              mozAllowFullScreen="true"
+              webkitAllowFullScreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xrSpatialTracking
+              executionWhileOutOfViewport
+              executionWhileNotRendered
+              webShare
+              src="https://sketchfab.com/models/102ca77328c24c4b890e4f7c71bda101/embed?annotations=false&ui_infos=false&ui_controls=false&ui_watermark=false&autostart=1"
+              className="w-full h-full"
+              style={{
+                borderRadius: '1rem',
+                overflow: 'hidden',
+              }}
+            />
           </div>
+          {/* Glow pulse effect */}
+          <div className="absolute inset-0 rounded-2xl shadow-glow animate-glow-pulse pointer-events-none" />
         </div>
 
         {/* CTA Buttons */}

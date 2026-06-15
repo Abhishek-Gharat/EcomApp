@@ -19,3 +19,46 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
+/* Sketchfab iframe styling - hide UI, show only model */
+iframe[title="Marshall Major IV headphones"] {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  border-radius: 1rem !important;
+  display: block !important;
+}
+
+/* Hide Sketchfab play button and UI elements via CSS */
+iframe[title="Marshall Major IV headphones"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hide embedded UI elements inside iframe by using data attribute */
+iframe[src*="sketchfab.com"] {
+  --sketchfab-ui-display: none !important;
+}
+
+/* Hero 3D container optimization */
+.hero-3d-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+}
+
+/* Ensure proper 3D model viewport */
+[data-component="hero-3d"] {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
