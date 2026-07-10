@@ -116,13 +116,11 @@ const Hero = () => {
                 title="Marshall Major IV headphones"
                 frameBorder="0"
                 allowFullScreen
-                mozAllowFullScreen="true"
-                webkitAllowFullScreen="true"
-                allow="autoplay; fullscreen; xr-spatial-tracking"
-                xrSpatialTracking
-                executionWhileOutOfViewport
-                executionWhileNotRendered
-                webShare
+                allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer"
+                xrspatialtracking
+                executionwhileoutofviewport
+                executionwhilenotrendered
+                webshare
                 src="https://sketchfab.com/models/102ca77328c24c4b890e4f7c71bda101/embed?annotations=false&ui_infos=false&ui_controls=false&ui_watermark=false&ui_inspector=false&autostart=1"
                 style={{
                   width: '100%',

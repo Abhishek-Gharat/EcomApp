@@ -123,7 +123,7 @@ export const updateUserData = async (userId, userData, idToken) => {
 };
 
 export const getProducts = async () => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/products`);
+  const response = await fetch(`${BASE_FIRESTORE_URL}/products?key=${API_KEY}`);
   
   if (!response.ok) {
     throw new Error('Failed to fetch products');
@@ -134,7 +134,7 @@ export const getProducts = async () => {
 };
 
 export const getCategories = async () => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/categories`);
+  const response = await fetch(`${BASE_FIRESTORE_URL}/categories?key=${API_KEY}`);
   
   if (!response.ok) {
     throw new Error('Failed to fetch categories');
