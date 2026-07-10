@@ -40,7 +40,7 @@ export const loginWithEmail = async (email, password) => {
 
 // Categories
 export const getCategories = async (idToken) => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/categories`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/categories?key=${API_KEY}`, {
     headers: { 'Authorization': `Bearer ${idToken}` }
   });
   
@@ -59,7 +59,7 @@ export const createCategory = async (categoryData, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/categories`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/categories?key=${API_KEY}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const updateCategory = async (categoryId, categoryData, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/categories/${categoryId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/categories/${categoryId}?key=${API_KEY}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export const updateCategory = async (categoryId, categoryData, idToken) => {
 };
 
 export const deleteCategory = async (categoryId, idToken) => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/categories/${categoryId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/categories/${categoryId}?key=${API_KEY}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${idToken}` }
   });
@@ -120,7 +120,7 @@ export const deleteCategory = async (categoryId, idToken) => {
 
 // Products
 export const getProducts = async (idToken) => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/products`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/products?key=${API_KEY}`, {
     headers: { 'Authorization': `Bearer ${idToken}` }
   });
   
@@ -143,7 +143,7 @@ export const createProduct = async (productData, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/products`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/products?key=${API_KEY}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ export const updateProduct = async (productId, productData, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/products/${productId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/products/${productId}?key=${API_KEY}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ export const updateProduct = async (productId, productData, idToken) => {
 };
 
 export const deleteProduct = async (productId, idToken) => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/products/${productId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/products/${productId}?key=${API_KEY}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${idToken}` }
   });
@@ -218,7 +218,7 @@ export const getOrders = async (idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}:runQuery`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}:runQuery?key=${API_KEY}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ export const updateOrderStatus = async (orderId, status, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/orders/${orderId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/orders/${orderId}?key=${API_KEY}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

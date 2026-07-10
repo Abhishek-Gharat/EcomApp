@@ -116,7 +116,7 @@ const Hero = () => {
                 title="Marshall Major IV headphones"
                 frameBorder="0"
                 allowFullScreen
-                allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer"
+                allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
                 xrspatialtracking
                 executionwhileoutofviewport
                 executionwhilenotrendered

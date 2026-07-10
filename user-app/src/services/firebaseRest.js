@@ -82,7 +82,7 @@ export const resetPassword = async (email) => {
 };
 
 export const getUserData = async (userId, idToken) => {
-  const response = await fetch(`${BASE_FIRESTORE_URL}/users/${userId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/users/${userId}?key=${API_KEY}`, {
     headers: {
       'Authorization': `Bearer ${idToken}`
     }
@@ -105,7 +105,7 @@ export const updateUserData = async (userId, userData, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/users/${userId}`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/users/${userId}?key=${API_KEY}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ export const placeOrder = async (orderData, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}/orders`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}/orders?key=${API_KEY}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ export const getUserOrders = async (userId, idToken) => {
     }
   };
 
-  const response = await fetch(`${BASE_FIRESTORE_URL}:runQuery`, {
+  const response = await fetch(`${BASE_FIRESTORE_URL}:runQuery?key=${API_KEY}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
